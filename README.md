@@ -7,14 +7,14 @@ node-red-contrib-os
 
 These nodes utilize the [Node.js OS Library][2] to obtain basic operating-system related utility functions.
 
-# Install
-
+Install
+---------------
 Run the following command in the root directory of your Node-RED install
 
     npm install node-red-contrib-os
 
-# Nodes
-
+Nodes
+---------------
 ### OS
 
 Use this node to query the operating system.
@@ -73,12 +73,12 @@ Use this node to get a list of network interfaces on the system.
 
 Note that due to the underlying implementation this will only return network interfaces that have been assigned an address.
 
-# Author
-
+Author
+---------------
 [Jason D. Harper][3]
 
 
-[1]:http://nodered.org
-[2]:https://nodejs.org/api/os.html
+[1]:http://nodered.org  
+[2]:https://nodejs.org/api/os.html  
 [3]:https://github.com/jayharper
 
