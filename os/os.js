@@ -16,9 +16,9 @@
 
 module.exports = function(RED) {
     const settings = RED.settings;
-    require('loadavg-windows');
-    const os = require('os');
-    const nodeDiskInfo = require('node-disk-info');
+    require("loadavg-windows");
+    const os = require("os");
+    const nodeDiskInfo = require("node-disk-info");
 
     function OS(config) {
         RED.nodes.createNode(this,config);
@@ -50,7 +50,7 @@ module.exports = function(RED) {
         node.on("input", function(msg) {
             try {
                 const disks = nodeDiskInfo.getDiskInfoSync();
-                const payload = []
+                const payload = [];
                 disks.forEach((disk) => {
                     payload.push({
                         "filesystem": disk.filesystem,
@@ -59,7 +59,7 @@ module.exports = function(RED) {
                         "available": disk.available,
                         "capacity": parseFloat(disk.capacity.replace("%", "")) / 100,
                         "mount": disk.mounted
-                    })
+                    });
                 })
                 /** old node-df output:
                  * "filesystem": "/dev/disk0s2",
@@ -144,12 +144,12 @@ module.exports = function(RED) {
 					fmem = parseFloat((fmem / 1024).toFixed(3));
 					break;
 				case "Megabyte":
-					tmem = parseFloat((tmem / 1048576).toFixed(3));
-					fmem = parseFloat((fmem / 1048576).toFixed(3));
+					tmem = parseFloat((tmem / (1024 * 1024)).toFixed(3));
+					fmem = parseFloat((fmem / (1024 * 1024)).toFixed(3));
 					break;
                 case "Gigabyte":
-                    tmem = parseFloat((tmem / 1073741824).toFixed(3));
-                    fmem = parseFloat((fmem / 1073741824).toFixed(3));
+                    tmem = parseFloat((tmem / (1024 * 1024 * 1024)).toFixed(3));
+                    fmem = parseFloat((fmem / (1024 * 1024 * 1024)).toFixed(3));
                     break;
 				default:
 					break;
@@ -177,4 +177,4 @@ module.exports = function(RED) {
     }
 
     RED.nodes.registerType("NetworkIntf",NetworkIntf);
-}
+};
